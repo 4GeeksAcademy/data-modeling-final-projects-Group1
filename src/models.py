@@ -54,11 +54,20 @@ class Comments (Base):
 class Cart(Base):
     __tablename__ = 'cart'
     id = Column(Integer, primary_key=True)
+    date = Column(String(20), nullable=False)
     user_id = (Integer, ForeignKey('user.id'))
     user = relationship(User)
     photo_id = Column(Integer, ForeignKey('photos.id'))
     photo = relationship(Photos)
-     
+
+class Category (Base):
+    __tablename__ = 'categories'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(20), nullable=False)
+    description = Column(String(1000), nullable=False)
+    photo_id = (Integer, ForeignKey('photos.id'))
+    photo = relationship(Photos)
+
 class Followers(Base):
     __tablename__ = "followers"
     id = Column(Integer, primary_key=True)
